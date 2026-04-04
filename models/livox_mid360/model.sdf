@@ -29,19 +29,35 @@
           </mesh>
         </geometry>
       </visual>
-        <sensor name="RGLsensor" type="custom">
-          <plugin filename="RGLServerPluginInstance" name="rgl::RGLServerPluginInstance">
+      <sensor name="RGLsensor" type="gpu_lidar">
+        <update_rate>10</update_rate>
+
+        <ray>
+            <scan>
+            <horizontal>
+                <samples>400</samples>
+                <resolution>1</resolution>
+                <min_angle>-3.14159</min_angle>
+                <max_angle>3.14159</max_angle>
+            </horizontal>
+            <vertical>
+                <samples>50</samples>
+                <resolution>1</resolution>
+                <min_angle>-0.12217</min_angle>
+                <max_angle>0.90757</max_angle>
+            </vertical>
+            </scan>
+
             <range>
-              <min>1</min>
-              <max>100</max>
+            <min>1.0</min>
+            <max>100.0</max>
+            <resolution>0.01</resolution>
             </range>
-            <update_rate>10</update_rate>
-            <update_on_paused_sim>false</update_on_paused_sim>
-            <topic>rgl_lidar</topic>
-            <frame>RGLLidar</frame>
-            <pattern_preset>Livox Mid360</pattern_preset>
-          </plugin>
-        </sensor>
+        </ray>
+
+        <always_on>1</always_on>
+        <visualize>true</visualize>
+      </sensor>
     </link>
   </model>
 </sdf>

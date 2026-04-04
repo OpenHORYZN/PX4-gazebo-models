@@ -631,16 +631,31 @@
       <odom_topic>odom</odom_topic>
       <dimensions>3</dimensions>
     </plugin>
-    <include merge='true'>
+
+    <include merge='false'>
       <!-- <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Lidar 2d v2</uri> -->
       <uri>model://livox_mid360</uri>
-      <!-- <pose>.2 -0.5 .03 0 0.25 0</pose> -->
-      <pose>.2 0 .03 3.141592654 0 0</pose>
+      <name>lidar_left</name>
+      <pose>0 0.3 0.03 -1.570796 0 0</pose>
     </include>
-    <joint name="LidarJoint" type="fixed">
-      <parent>base_link</parent>
-      <child>link</child>
-      <pose relative_to="base_link">0 0 0 0 0 0</pose>
+
+    <include merge='false'>
+      <!-- <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Lidar 2d v2</uri> -->
+      <uri>model://livox_mid360</uri>
+      <name>lidar_right</name>
+      <pose>0 -0.3 0.03 1.570796 0 0</pose>
+    </include>
+
+    <joint name="LidarLeftJoint" type="fixed">
+        <parent>base_link</parent>
+        <child>lidar_left::link</child>
+        <pose relative_to="base_link">0 0 0 0 0 0</pose>
+    </joint>
+
+    <joint name="LidarRightJoint" type="fixed">
+        <parent>base_link</parent>
+        <child>lidar_right::link</child>
+        <pose relative_to="base_link">0 0 0 0 0 0</pose>
     </joint>
     </model>
 </sdf>
